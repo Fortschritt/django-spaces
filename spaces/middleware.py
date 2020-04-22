@@ -5,9 +5,10 @@ from .util import activate, deactivate
 
 
 from django.shortcuts import get_object_or_404
+from django.utils.deprecation import MiddlewareMixin
 from .models import Space
 
-class SpacesMiddleware(object):
+class SpacesMiddleware(MiddlewareMixin):
     """
     Variant of django.middleware.locale.LocaleMiddleware.
     Reads the current space from URL prefixes.

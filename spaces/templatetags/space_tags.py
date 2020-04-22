@@ -57,7 +57,7 @@ def space_url(parser, token):
     """
     This works just like djangos 'url' tag, with one exception:
 
-    the first paramter has to be a Space object.
+    the first parameter has to be a Space object.
     An example. In 'url' you would write:
 
         {% url "path.to.some_view" arg1 arg2 %}

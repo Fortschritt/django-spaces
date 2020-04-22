@@ -4,10 +4,7 @@ _space = local()
 
 def get_space(): # das war mal get_country
     """Return the currently selected space or None."""
-    try:
-        return _space.value
-    except AttributeError:
-        return None
+    return getattr(_space, 'value', None)
 
 def get_space_prefix():
         """
@@ -29,10 +26,8 @@ def activate(space_slug):
 
 def deactivate():
     """Remove the space for the current thread."""
-    try:
+    if hasattr(_space, "value"):
         del _space.value
-    except AttributeError:
-        pass
 
 def is_space_admin(user, space):
     """

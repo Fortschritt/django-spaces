@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
-from django.core.urlresolvers import RegexURLResolver
-from django.conf.urls import url,patterns
+from django.urls.resolvers import RegexURLResolver
+from django.conf.urls import url
 
 from .models import Space
 from . import util
