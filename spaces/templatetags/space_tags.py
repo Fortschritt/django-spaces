@@ -1,6 +1,7 @@
-from django.core.urlresolvers import reverse
 from django import template
 from django.template.base import TemplateSyntaxError, Node, kwarg_re
+from django.urls import reverse
+
 from spaces.models import Space, SpacePluginRegistry
 
 register = template.Library()
