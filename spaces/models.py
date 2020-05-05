@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import itertools
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.template.exceptions import TemplateDoesNotExist
 from django.template.loader import get_template
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 from djangoplugins.point import PluginPoint
@@ -15,7 +15,7 @@ class Space(models.Model):
     slug = models.SlugField(blank=True, unique=True)
     expires = models.DateTimeField(verbose_name="Expires at", null=True, blank=True) # optionally switches to read-only at this point.
     archived = models.BooleanField(default=False)
-    created_by = models.ForeignKey(User)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -124,7 +124,7 @@ class SpacePlugin(models.Model):
     Common metadata is defined here.
     
     """
-    space = models.ForeignKey(Space)
+    space = models.ForeignKey(Space, on_delete=models.CASCADE)
     active = models.BooleanField(default=False)
     reverse_url = ''
 
