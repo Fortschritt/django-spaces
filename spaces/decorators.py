@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.exceptions import PermissionDenied
 from django.utils.functional import wraps
-from guardian.compat import str
 from guardian.exceptions import GuardianError
 from guardian.utils import get_403_or_None
 from .util import is_space_admin
@@ -87,7 +86,7 @@ def space_admin_required(func):
     current space.
     """
     def _decorator(self, *args, **kwargs):
-        if self.user and self.user.is_authenticated():
+        if self.user and self.user.is_authenticated:
             is_allowed = is_space_admin(
                 self.user, 
                 self.SPACE

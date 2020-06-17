@@ -10,7 +10,7 @@ def get_space_prefix():
         """
         Return the URL prefix according to the current Space.
         """
-        space_slug = get_space() 
+        space_slug = get_space()
         if space_slug is None:
             return None
         

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
-from django.urls.resolvers import RegexURLResolver
+from django.urls import URLResolver, URLPattern, LocalePrefixPattern
 from django.conf.urls import url
 
 from .models import Space
@@ -12,18 +12,24 @@ def space_patterns(*urls, app_name=None):
     """
     Variant of django.conf.urls.i18n.i18_patterns.
     """
-    return [SpaceURLResolver(list(urls), app_name=app_name)]
+    return [
+        SpaceURLResolver(
+            LocalePrefixPattern(prefix_default_language=False),
+            list(urls), 
+            app_name=app_name
+        )
+    ]
 
 
-class SpaceURLResolver(RegexURLResolver):
+class SpaceURLResolver(URLResolver):
     """
     Variant of django.core.urlresolvers.LocaleRegexURLResolver.
     """
-    def __init__(self, urlconf_name, default_kwargs=None,
+    def __init__(self, pattern, urlconf_name, default_kwargs=None,
                  app_name=None, namespace=None):
         monkey.patch()          # Latest possible point for monkey patching.
         super(SpaceURLResolver, self).__init__(
-            None, urlconf_name, default_kwargs, app_name, namespace)
+            pattern, urlconf_name, default_kwargs, app_name, namespace)
 
 
     @property
