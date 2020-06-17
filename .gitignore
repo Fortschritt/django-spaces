@@ -1,7 +1,2 @@
-/__pycache__
-
-# /management/
-/management/__pycache__
-
-# /management/commands/
-/management/commands/__pycache__
+__pycache__
+*egg-info
